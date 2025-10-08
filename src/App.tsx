@@ -12,7 +12,7 @@ import "./styles/theme.css";
 function getBasename() {
     const pub = process.env.PUBLIC_URL;
     if (!pub) return "/barca-squad";
-    try { return new URL(pub).pathname || "/"; } catch { return "/"; }
+    try { return new URL(pub).pathname || "/barca-squad"; } catch { return "/barca-squad"; }
 }
 
 export default function App() {
@@ -21,16 +21,16 @@ export default function App() {
             <SquadProvider>
                 <div className={layout.container}>
                     <header className={layout.header}>
-                        <Link className={layout.link} to="/">Barcelona Football Club Squad</Link>
+                        <Link className={layout.link} to="/barca-squad">Barcelona Football Club Squad</Link>
                         <nav className={layout.nav}>
-                            <Link className={layout.link} to="/">Player List</Link>
+                            <Link className={layout.link} to="/barca-squad">Player List</Link>
                             <Link className={layout.link} to="/gallery">Player Gallery</Link>
                         </nav>
                         <span className={layout.badge}>CS409 MP2- Aniruddha Sonawane</span>
                     </header>
                     <main className={layout.main}>
                         <Routes>
-                            <Route path="/" element={<ListView />} />
+                            <Route path="/barca-squad" element={<ListView />} />
                             <Route path="/gallery" element={<GalleryView />} />
                             <Route path="/player/:id" element={<DetailView />} />
                         </Routes>
