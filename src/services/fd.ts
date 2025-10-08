@@ -16,23 +16,22 @@ export type FdPlayer = { id: number; name: string; position?: string; nationalit
 export type FdTeam = { id: number; name: string; crest: string; squad: FdPlayer[] };
 
 export async function getBarcaTeam(): Promise<FdTeam> {
-  // On GitHub Pages, load the baked JSON (no CORS, no token)
-  if (isGhPages) {
-    const url = `${process.env.PUBLIC_URL}/data/team_81.json`;
-    const resp = await fetch(url);
-    if (!resp.ok) throw new Error(`static team json fetch failed: ${resp.status}`);
-    const json = await resp.json();
-    // If someone accidentally baked only the squad array, wrap it
-    const team: FdTeam = Array.isArray(json)
-      ? { id: 81, name: "FC Barcelona", crest: "", squad: json }
-      : json;
-    return team;
+  // Always read local static JSON
+  const url = `${process.env.PUBLIC_URL}/data/team_81.json`;
+  const resp = await fetch(url, { cache: "no-store" });
+
+  if (!resp.ok) {
+    // If someone saved only an array (squad) by mistake, gracefully fallback below
+    throw new Error(`static team_81.json fetch failed: ${resp.status}`);
   }
 
-  // Dev (localhost): use proxy + token
-  if (!token) throw new Error("Missing REACT_APP_FD_TOKEN. Add it to .env and restart.");
-  const { data } = await FD.get<FdTeam>("/teams/81");
-  return data;
+  const json = await resp.json();
+  // Support either full team object or just the squad array
+  const team: FdTeam = Array.isArray(json)
+    ? { id: 81, name: "FC Barcelona", crest: "https://crests.football-data.org/81.png", squad: json }
+    : json;
+
+  return team;
 }
 
 export function mapFdPlayers(squad: FdPlayer[]): Player[] {
