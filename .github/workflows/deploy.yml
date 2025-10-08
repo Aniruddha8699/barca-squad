@@ -30,15 +30,14 @@ jobs:
       - name: Install dependencies
         run: npm install --no-audit --no-fund
       
-      - name: Fetch Barca squad at build-time
+      - name: Fetch Barca team at build-time
         env:
-          FD_TOKEN: ${{ secrets.FD_TOKEN }}   # or replace with the literal token if you don't mind exposure
+          FD_TOKEN: ${{ secrets.FD_TOKEN }}
         run: |
-          sudo apt-get update -y && sudo apt-get install -y jq
           mkdir -p public/data
           curl -sS -H "X-Auth-Token: $FD_TOKEN" \
             "https://api.football-data.org/v4/teams/81" \
-            | jq '.squad' > public/data/squad.json
+            -o public/data/team_81.json
 
       - name: Build site
         env:
