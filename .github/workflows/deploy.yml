@@ -29,10 +29,20 @@ jobs:
 
       - name: Install dependencies
         run: npm install --no-audit --no-fund
+      
+      - name: Fetch Barca squad at build-time
+        env:
+          FD_TOKEN: ${{ secrets.FD_TOKEN }}   # or replace with the literal token if you don't mind exposure
+        run: |
+          sudo apt-get update -y && sudo apt-get install -y jq
+          mkdir -p public/data
+          curl -sS -H "X-Auth-Token: $FD_TOKEN" \
+            "https://api.football-data.org/v4/teams/81" \
+            | jq '.squad' > public/data/squad.json
 
       - name: Build site
         env:
-          REACT_APP_FD_TOKEN: ${{ secrets.FD_TOKEN }}   # set FD_TOKEN in Settings → Secrets → Actions
+          REACT_APP_FD_TOKEN: "007ecd1015014a9c8931de6680ea7478"
         run: |
           npm run build
           # SPA fallback so refresh/deep links work on GitHub Pages

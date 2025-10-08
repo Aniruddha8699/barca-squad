@@ -9,7 +9,7 @@ module.exports = function (app) {
       secure: true,
       pathRewrite: { "^/api": "" },
       onProxyReq: (proxyReq) => {
-        const token = process.env.REACT_APP_FD_TOKEN;
+        const token = "007ecd1015014a9c8931de6680ea7478";
         if (token) proxyReq.setHeader("X-Auth-Token", token);
       },
       logLevel: "debug",
