@@ -29,23 +29,28 @@ jobs:
 
       - name: Install dependencies
         run: npm install --no-audit --no-fund
-      
-      - name: Fetch Barca team at build-time
-        env:
-          FD_TOKEN: ${{ secrets.FD_TOKEN }}
-        run: |
-          mkdir -p public/data
-          curl -sS -H "X-Auth-Token: $FD_TOKEN" \
-            "https://api.football-data.org/v4/teams/81" \
-            -o public/data/team_81.json
+
+      # OPTIONAL: if you committed public/data/team_81.json, this does nothing.
+      # If you want CI to create it for you, uncomment and set your token:
+      # - name: (Optional) Fetch Barca team data at build-time
+      #   env:
+      #     FD_TOKEN: ${{ secrets.FD_TOKEN }}
+      #   run: |
+      #     mkdir -p public/data
+      #     curl -sS -H "X-Auth-Token: $FD_TOKEN" \
+      #       "https://api.football-data.org/v4/teams/81" \
+      #       -o public/data/team_81.json || true
 
       - name: Build site
-        env:
-          REACT_APP_FD_TOKEN: "007ecd1015014a9c8931de6680ea7478"
+        run: npm run build
+
+      - name: SPA fallback + verify build
         run: |
-          npm run build
-          # SPA fallback so refresh/deep links work on GitHub Pages
+          set -e
           cp build/index.html build/404.html
+          test -f build/index.html || (echo "❌ build/index.html missing" && exit 1)
+          echo "✅ build/index.html present"
+          ls -la build | head -n 50
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
