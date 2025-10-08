@@ -1,0 +1,96 @@
+.detail {
+  max-width: 720px;
+  margin: 0 auto;
+  display: grid;
+  gap: 1rem;
+}
+
+.title {
+  text-align: center;
+  font-size: 1.9rem;
+  line-height: 1.2;
+  margin: .25rem 0 .5rem;
+}
+
+.imageWrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.photo {
+  width: 280px;
+  height: 280px;
+  object-fit: contain;
+  background: #0f0f0f;
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 8px;
+}
+
+.infoCard {
+  border: 1px solid var(--border);
+  background: var(--panel);
+  border-radius: 12px;
+  padding: 1rem;
+}
+
+.infoList {
+  display: grid;
+  gap: .6rem;
+  margin: 0;
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: .75rem;
+  align-items: baseline;
+}
+
+.row dt {
+  font-weight: 600;
+  color: var(--text-dim);
+}
+
+.row dd {
+  margin: 0;
+  color: var(--text);
+}
+
+.navBtns {
+  display: flex;
+  gap: .75rem;
+  justify-content: center;
+}
+
+.btn {
+  padding: .55rem .95rem;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--panel-2);
+  color: var(--text);
+  cursor: pointer;
+}
+
+.btn:disabled {
+  opacity: .4;
+  cursor: not-allowed;
+}
+
+.back {
+  text-align: center;
+  margin-top: .25rem;
+}
+
+/* Small screens */
+@media (max-width: 420px) {
+  .photo {
+    width: 220px;
+    height: 220px;
+  }
+
+  .row {
+    grid-template-columns: 120px 1fr;
+  }
+}

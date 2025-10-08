@@ -1,0 +1,50 @@
+.controls {
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: .75rem;
+  margin-bottom: 1rem
+}
+
+.count {
+  align-self: center;
+  justify-self: end;
+  color: var(--text-dim)
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1rem
+}
+
+.card {
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: .75rem;
+  background: var(--panel);
+  display: block;
+  text-decoration: none;
+  color: var(--text);
+}
+
+.avatar {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  /* or 4/5 if you want portrait here too */
+  object-fit: contain;
+  background: #0f0f0f;
+  border-radius: 10px;
+  display: block;
+}
+
+.name {
+  font-weight: 700
+}
+
+.meta {
+  display: flex;
+  gap: .5rem;
+  flex-wrap: wrap;
+  font-size: .9rem;
+  color: var(--text-dim)
+}

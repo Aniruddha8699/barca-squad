@@ -1,0 +1,65 @@
+/* grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1rem;
+  align-items: start;
+}
+
+/* card */
+.card {
+  display: block;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  color: var(--text);
+  text-decoration: none;
+  overflow: hidden;
+  transition: transform .08s ease-out, border-color .08s ease-out;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  border-color: #3a3a3a;
+}
+
+/* thumb: fixed box that centers the image */
+.thumb {
+  margin: 0;
+  /* <-- reset figure's default 40px margins */
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  background: #0f0f0f;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* image: never overflow, always centered, no crop */
+.img {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  object-position: center;
+}
+
+/* text */
+.caption {
+  padding: .55rem .65rem 0;
+  font-weight: 700;
+  line-height: 1.25;
+  text-align: left;
+}
+
+.sub {
+  padding: 0 .65rem .7rem;
+  color: var(--text-dim);
+  font-size: .9rem;
+  line-height: 1.25;
+  text-align: left;
+}

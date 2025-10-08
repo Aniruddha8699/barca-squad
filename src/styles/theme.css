@@ -1,0 +1,34 @@
+/* GLOBAL dark theme */
+:root {
+  --bg: #000;
+  /* pure black background */
+  --panel: #111;
+  /* cards/panels */
+  --panel-2: #161616;
+  /* inputs */
+  --border: #2a2a2a;
+  --text: #eaeaea;
+  --text-dim: #b8b8b8;
+  --accent: #8b5cf6;
+  /* purple-ish */
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+html,
+body {
+  background: var(--bg);
+  color: var(--text);
+}
+
+a {
+  color: var(--accent);
+}
+
+* {
+  box-sizing: border-box;
+}
