@@ -4,7 +4,7 @@ import type { Player } from "../types";
 
 const host = typeof window !== "undefined" ? window.location.hostname : "";
 const isLocal = /^(localhost|127\.0\.0\.1|::1)$/i.test(host);
-const isGhPages = host.endsWith("github.io"); // ⬅️ add this
+// const isGhPages = host.endsWith("github.io"); // ⬅️ add this
 const token = "007ecd1015014a9c8931de6680ea7478";
 
 export const FD = axios.create({
