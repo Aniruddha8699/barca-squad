@@ -4,7 +4,7 @@ import type { Player } from "../types";
 import styles from "../styles/list.module.css";
 
 // const placeholder = "https://via.placeholder.com/300x300?text=Player";
-const placeholder = "player.jpg";
+const placeholder = `${process.env.PUBLIC_URL}/player.jpg`;
 
 export default function PlayerCard({ p }: { p: Player }) {
   return (

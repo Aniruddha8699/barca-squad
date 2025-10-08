@@ -15,7 +15,7 @@ function ageFrom(dob?: string) {
   return age;
 }
 
-const placeholder = "/player.jpg";
+const placeholder = `${process.env.PUBLIC_URL}/player.jpg`;
 
 export default function DetailView() {
   const { id } = useParams();

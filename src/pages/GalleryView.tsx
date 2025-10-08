@@ -17,7 +17,7 @@ export default function GalleryView() {
     );
   }, [players, posFilter]);
 
-  const placeholder = "/player.jpg";
+  const placeholder = `${process.env.PUBLIC_URL}/player.jpg`;
 
   return (
     <>
